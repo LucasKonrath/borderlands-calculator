@@ -1,38 +1,452 @@
+/* App Container */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Header */
+.App-header {
+  background: linear-gradient(90deg, #ff6b35 0%, #f7931e 50%, #ffd700 100%);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.App-header p {
+  margin: 0.5rem 0 0 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Main Content */
+.App-main {
+  flex: 1;
+  padding: 2rem;
+}
+
+.calculator-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Column styles */
+.left-column, .middle-column, .right-column {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Weapon Selector Styles */
+.weapon-selector h3 {
+  margin-top: 0;
+  color: #ffd700;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 0.5rem;
+}
+
+.weapon-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.weapon-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.weapon-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
+}
+
+.weapon-card.selected {
+  background: rgba(0, 122, 204, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 122, 204, 0.3);
+}
+
+.weapon-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 0.5rem;
 }
 
-.App-link {
-  color: #61dafb;
+.weapon-name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.weapon-level {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.weapon-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.weapon-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.weapon-info-row .label {
+  opacity: 0.8;
+}
+
+.damage-value {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.damage-type {
+  font-size: 1.2rem;
+}
+
+/* Game Settings Styles */
+.game-settings h3 {
+  margin-top: 0;
+  color: #ffd700;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 0.5rem;
+}
+
+.settings-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.setting-group label {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.setting-select, .setting-input {
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.setting-select option {
+  background: #1a1a2e;
+  color: #ffffff;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.setting-checkbox {
+  width: 18px;
+  height: 18px;
+}
+
+/* Additional Modifiers Styles */
+.additional-modifiers h3 {
+  margin-top: 0;
+  color: #ffd700;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 0.5rem;
+}
+
+.modifiers-description {
+  margin-bottom: 1rem;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.modifiers-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modifier-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modifier-group label {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.modifier-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px 0 0 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.input-suffix {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  font-weight: bold;
+}
+
+.modifier-help {
+  opacity: 0.7;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.modifiers-summary {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+.modifiers-summary h4 {
+  margin: 0 0 0.5rem 0;
+  color: #ffd700;
+}
+
+.summary-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary-value {
+  font-weight: bold;
+  color: #90EE90;
+}
+
+/* Damage Results Styles */
+.damage-results h3 {
+  margin-top: 0;
+  color: #ffd700;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 0.5rem;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.main-damage {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 215, 0, 0.2));
+  border-radius: 8px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.damage-value-large, .dps-value {
+  text-align: center;
+}
+
+.damage-number, .dps-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.damage-label, .dps-label {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 0.3rem;
+}
+
+.elemental-effectiveness {
+  margin-bottom: 1.5rem;
+}
+
+.elemental-effectiveness h4 {
+  margin: 0 0 0.5rem 0;
+  color: #ffffff;
+}
+
+.effectiveness-display {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+.effectiveness-multiplier {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.effectiveness-description {
+  font-style: italic;
+}
+
+.damage-breakdown h4 {
+  margin: 0 0 1rem 0;
+  color: #ffffff;
+}
+
+.breakdown-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0;
+}
+
+.breakdown-label {
+  opacity: 0.8;
+}
+
+.breakdown-value {
+  font-weight: bold;
+  color: #90EE90;
+}
+
+.breakdown-multiplier {
+  font-weight: bold;
+  color: #87CEEB;
+}
+
+.critical-indicator {
+  font-size: 0.8rem;
+}
+
+.critical-hit-display {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 140, 0, 0.2));
+  border-radius: 8px;
+  border: 1px solid rgba(255, 140, 0, 0.3);
+}
+
+.critical-hit-display h4 {
+  margin: 0 0 0.5rem 0;
+  color: #FF8C00;
+}
+
+.critical-damage {
+  text-align: center;
+}
+
+.critical-number {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #FF8C00;
+}
+
+.critical-label {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 0.3rem;
+}
+
+/* Footer */
+.App-footer {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.App-footer p {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .calculator-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .App-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .App-main {
+    padding: 1rem;
+  }
+  
+  .left-column, .middle-column, .right-column {
+    padding: 1rem;
+  }
+  
+  .main-damage {
+    flex-direction: column;
+    gap: 1rem;
   }
 }

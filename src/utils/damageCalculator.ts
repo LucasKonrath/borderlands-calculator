@@ -14,8 +14,6 @@ import {
  * Calculates level scaling factor based on the difference between player and enemy levels
  */
 export function calculateLevelScaling(playerLevel: number, enemyLevel: number): number {
-  const levelDifference = enemyLevel - playerLevel;
-  
   // Clamp levels to valid range
   const clampedPlayerLevel = Math.max(MIN_LEVEL, Math.min(MAX_LEVEL, playerLevel));
   const clampedEnemyLevel = Math.max(MIN_LEVEL, Math.min(MAX_LEVEL, enemyLevel));
@@ -141,7 +139,6 @@ export function calculateDamage(input: DamageCalculationInput): DamageCalculatio
 export function calculateDamageComparison(
   input: Omit<DamageCalculationInput, 'difficulty'>
 ): Record<string, DamageCalculationResult> {
-  const difficulties = Object.values(DIFFICULTY_MODIFIERS);
   const results: Record<string, DamageCalculationResult> = {};
   
   Object.keys(DIFFICULTY_MODIFIERS).forEach((difficulty) => {

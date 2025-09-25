@@ -1,5 +1,5 @@
 import React from 'react';
-import { Weapon, WeaponType, DamageType } from '../types';
+import { Weapon, DamageType } from '../types';
 
 interface WeaponSelectorProps {
   weapons: Weapon[];
